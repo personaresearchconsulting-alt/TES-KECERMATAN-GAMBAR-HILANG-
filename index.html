@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TES KECERMATAN GAMBAR HILANG</title>
+    <style>
+        :root {
+            --navy: #0b2340;
+            --gold: #d4a017;
+            --light: #f1f5f9;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #e2e8f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            border-top: 6px solid var(--navy);
+        }
+        h2 { color: var(--navy); margin-bottom: 1.5rem; font-size: 1.2rem; }
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 1rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background: var(--navy);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        button:hover { background: #1a3a5f; }
+        .menu-list { display: none; text-align: left; margin-top: 1rem; }
+        .menu-item {
+            display: block;
+            padding: 10px;
+            margin-bottom: 8px;
+            background: var(--light);
+            color: var(--navy);
+            text-decoration: none;
+            border-radius: 6px;
+            border-left: 4px solid var(--gold);
+            font-size: 0.9rem;
+            transition: 0.2s;
+        }
+        .menu-item:hover { background: #e2e8f0; transform: translateX(5px); }
+        #error-msg { color: #c0392b; font-size: 0.8rem; margin-bottom: 1rem; display: none; }
+        .footer { margin-top: 1.5rem; font-size: 0.7rem; color: #64748b; }
+    </style>
+</head>
+<body>
+
+<div class="container" id="login-box">
+    <h2>TES KECERMATAN GAMBAR HILANG</h2>
+    <div id="error-msg">Password salah atau akses sudah kedaluwarsa!</div>
+    <input type="password" id="password" placeholder="Masukkan Password">
+    <button onclick="checkAccess()">Masuk</button>
+    <div class="footer">Persona Research & Consulting</div>
+</div>
+
+<div class="container" id="menu-box" style="display:none;">
+    <h2>MENU INSTRUMEN TES</h2>
+    <div class="menu-list" style="display:block;">
+        <a href="gambar_mix_2.html" class="menu-item">01. Tes Kecermatan Gambar Mix</a>
+        <a href="mono_3.html" class="menu-item">02. Tes Kecermatan Mono 3</a>
+        <a href="mono_4.html" class="menu-item">03. Tes Kecermatan Mono 4</a>
+        <a href="mono_5.html" class="menu-item">04. Tes Kecermatan Mono 5</a>
+        <a href="mono_6.html" class="menu-item">05. Tes Kecermatan Mono 6</a>
+        <a href="mono_7fix.html" class="menu-item">06. Tes Kecermatan Mono 7 (Fix)</a>
+        <a href="mono_8.html" class="menu-item">07. Tes Kecermatan Mono 8</a>
+        <a href="mono_9.html" class="menu-item">08. Tes Kecermatan Mono 9</a>
+        <a href="mono_10.html" class="menu-item">09. Tes Kecermatan Mono 10</a>
+    </div>
+    <div class="footer">Berlaku hingga: 1 Juli 2026</div>
+</div>
+
+<script>
+    function checkAccess() {
+        const pass = document.getElementById('password').value;
+        const errorMsg = document.getElementById('error-msg');
+        
+        // Konfigurasi
+        const correctPass = "pesona05";
+        const expiryDate = new Date("2026-07-01T23:59:59");
+        const today = new Date();
+
+        if (today > expiryDate) {
+            errorMsg.textContent = "Masa berlaku akses telah habis (Expired).";
+            errorMsg.style.display = "block";
+            return;
+        }
+
+        if (pass === correctPass) {
+            document.getElementById('login-box').style.display = 'none';
+            document.getElementById('menu-box').style.display = 'block';
+        } else {
+            errorMsg.textContent = "Password salah!";
+            errorMsg.style.display = "block";
+        }
+    }
+
+    // Memungkinkan tekan Enter untuk login
+    document.getElementById('password').addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') {
+            checkAccess();
+        }
+    });
+</script>
+
+</body>
+</html>
